@@ -12,3 +12,6 @@ docker build -t $IMAGE_NAME:$TAG --build-arg BASE_IMAGE=$BASE_IMAGE .
 # Launch a jenkins server
 mkdir /jenkins
 docker run -itd -p 8080:8080 --name Jenkins-server -v /jenkins:/var/jenkins_home $IMAGE_NAME:$TAG
+
+# Running with ldap-env file
+# docker --env-file .ldap-env run -itd -p 8080:8080 --name Jenkins-server -v /jenkins:/var/jenkins_home $IMAGE_NAME:$TAG

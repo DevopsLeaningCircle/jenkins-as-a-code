@@ -1,0 +1,4 @@
+LDAP_SERVER=ldap://ldap.example.com
+LDAP_ROOT_DN=dc=example,dc=com
+LDAP_MANAGER_DN=cn=admin,dc=example,dc=com
+LDAP_MANAGER_PASSWORD=SuperSecretPassword123
