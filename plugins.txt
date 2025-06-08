@@ -1,13 +1,11 @@
 git
 workflow-aggregator
-pipeline-gihub-lib
 pipeline-stage-view
 blueocean
 docker-workflow
 credentials-binding
 matrix-auth
-ladap
-configure-as-code
+ldap
 role-strategy
 ssh-slaves
 nodelabelparameter

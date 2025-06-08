@@ -1,7 +1,11 @@
 #!/bin/bash
+
+set -e # exit immediately if any command fails
+
 BASE_IMAGE=jenkins/jenkins:latest
 IMAGE_NAME=jenkins-server
 TAG=latest
+
 # Build Jenkins server docker image
 docker build -t $IMAGE_NAME:$TAG --build-arg BASE_IMAGE=$BASE_IMAGE .
 
