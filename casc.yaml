@@ -3,12 +3,7 @@ jenkins:
   authorizationStrategy:
     loggedInUsersCanDoAnything:
       allowAnonymousRead: false
-  crumbIssuer:
-    standard:
-      excludeClientIPFromCrumb: false
-  disableRememberMe: false
-  disabledAdministrativeMonitors:
-  - "hudson.util.DoubleLaunchChecker"
+    
   globalNodeProperties:
   - envVars:
       env:
@@ -26,21 +21,7 @@ jenkins:
     rawHtml:
       disableSyntaxHighlighting: false
   mode: NORMAL
-  nodeMonitors:
-  - "architecture"
-  - "clock"
-  - diskSpace:
-      freeSpaceThreshold: "1GiB"
-      freeSpaceWarningThreshold: "2GiB"
-  - "swapSpace"
-  - tmpSpace:
-      freeSpaceThreshold: "1GiB"
-      freeSpaceWarningThreshold: "2GiB"
-  - "responseTime"
   numExecutors: 5
-  primaryView:
-    all:
-      name: "all"
   projectNamingStrategy: "standard"
   quietPeriod: 5
   remotingSecurity:
@@ -53,20 +34,6 @@ jenkins:
       users:
       - id: "admin"
         name: "admin"
-        properties:
-        - "apiToken"
-        - "consoleUrlProvider"
-        - "viewsTabBar"
-        - "mailer"
-        - "favorite"
-        - myView:
-            viewsTabBar: "standard"
-        - preferredProvider:
-            providerId: "default"
-        - theme:
-            theme: "noOp"
-        - "timezone"
-        - "experimentalFlags"
   slaveAgentPort: 50000
   systemMessage: "<h1>Welcome to DevOps Learning Circle CI/CD System</h1>"
   updateCenter:
@@ -178,3 +145,57 @@ tool:
   mavenGlobalConfig:
     globalSettingsProvider: "standard"
     settingsProvider: "standard"
+# Sample job configuration
+jobs:
+  - script: >
+      pipelineJob("Sample-pipeline-job")
+      definition {
+        cps {
+          script("""
+            pipeline {
+                agent any
+
+                stages {
+                    stage('Initialize') {
+                        steps {
+                            echo 'Preparing ...'
+                        }
+                    }
+                    
+                    stage("Build") {
+                        steps{
+                            script {
+                                echo "Building ..."
+                            }
+                        }
+                    }
+                    stage("Test") {
+                        steps{
+                            script {
+                                echo "Running Test ..."
+                            }
+                        }
+                    }
+                    
+                    stage("Deploy") {
+                        steps{
+                            script {
+                                echo "Deploying ..."
+                            }
+                        }
+                    }
+                }
+                
+                post {
+                    success {
+                        echo "Pipeline execute successfully!"
+                    }
+                    failure {
+                        echo "Pipeline execution failed!"   
+                    }
+                }
+            }
+
+          """)
+        }
+      }

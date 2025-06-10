@@ -15,4 +15,5 @@ gitlab-oauth
 scm-api
 material-theme
 configuration-as-code
+job-dsl
 simple-theme-plugin
