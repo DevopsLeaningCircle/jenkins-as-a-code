@@ -13,3 +13,6 @@ email-ext
 gitlab-api
 gitlab-oauth
 scm-api
+material-theme
+configuration-as-code
+simple-theme-plugin
