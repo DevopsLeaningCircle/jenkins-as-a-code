@@ -11,7 +11,7 @@ resource "aws_vpc" "iac_vpc" {
 # Public  subnet inside VPC
 resource "aws_subnet" "iac_public" {
   vpc_id = aws_vpc.iac_vpc.id
-  cidr_block = "176.0.0.1/24"
+  cidr_block = "176.0.0.0/24"
 
   tags = {
     Name =  "iac_public_subnet"
@@ -29,7 +29,7 @@ resource "aws_subnet" "iac_private" {
 }
 # Internet gateway to access internet in public subnet
 resource "aws_internet_gateway" "iac_igw" {
-  vpc_id = aws_subnet.iac_vpc.id
+  vpc_id = aws_vpc.iac_vpc.id
   tags = {
     Name = "iac_igw"
   }
@@ -38,7 +38,7 @@ resource "aws_internet_gateway" "iac_igw" {
 # Create route table
 resource "aws_route_table" "iac_public_rt" {
   vpc_id = aws_vpc.iac_vpc.id
-  route = {
+  route {
     cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.iac_igw.id
   }
@@ -80,7 +80,7 @@ resource "aws_security_group_rule" "allow_http" {
   to_port = 8080
   protocol = "tcp"
   description = "Allow HTTP"
-  cidr_blocks = ["0.0.0.0./0"]
+  cidr_blocks = ["0.0.0.0/0"]
 }
 
 resource "aws_security_group_rule" "allow_all" {
