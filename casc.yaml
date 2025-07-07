@@ -111,12 +111,12 @@ unclassified:
   gitHubConfiguration:
     apiRateLimitChecker: ThrottleForNormalize
   gitHubPluginConfig:
-    hookUrl: "http://<replace_jenkins_IP_OR_DNS_NAME>:8080/github-webhook/"
+    hookUrl: "http://localhost:8080/github-webhook/"
   junitTestResultStorage:
     storage: "file"
   location:
     adminAddress: "devops@devopslearningcircle.com"
-    url: "http://<replace_jenkins_IP_OR_DNS_NAME>:8080/"
+    url: "http://localhost:8080/"
   mailer:
     authentication:
       password: "{AQAAABAAAAAQBj7Pmcxlaqijzl9+wrfEq8n2qIeoEOAl8IU+wzU8+hE=}"

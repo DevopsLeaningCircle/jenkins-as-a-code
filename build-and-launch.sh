@@ -8,15 +8,15 @@ TAG=latest
 CONTAINER_NAME=Jenkins-server
 
 # Set real permisison for plugins.txt, casc.yaml, and init.groovy.d\*
-sudo chmod +r plugins.txt casc.yaml
-sudo chmod +r init.groovy.d
+sudo chmod +rw plugins.txt casc.yaml
+sudo chmod +rw -Rv init.groovy.d
 
 # Build Jenkins server docker image
-docker build -t $IMAGE_NAME:$TAG --build-arg BASE_IMAGE=$BASE_IMAGE .
+docker build --no-cache -t $IMAGE_NAME:$TAG --build-arg BASE_IMAGE=$BASE_IMAGE .
 
 # Create a directory, option -p ensure no error if the directory already exists
 mkdir -p /jenkins 
-sudo chmod +rw /jenkins
+sudo chmod 777 /jenkins
 
 # Stop and remove container if it exists
 if [ "$(docker ps -a -q -f name=^/${CONTAINER_NAME}$)" ]; then
